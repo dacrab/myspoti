@@ -23,7 +23,6 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.EmojiEvents
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.outlined.QueueMusic
@@ -269,13 +268,14 @@ fun FriendActivityScreen(navController: NavController) {
     }
     val now = remember(state) { System.currentTimeMillis() }
     Column(Modifier.fillMaxSize().background(AppBackground).statusBarsPadding()) {
-        // Opened from Home's header (no longer a tab): back to it.
+        // Opened from Home's header (no longer a tab): back to it, with the Messages beside it.
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth().padding(4.dp, 12.dp, 8.dp, 8.dp)) {
             androidx.compose.material3.IconButton(onClick = { navController.popBackStack() }) {
                 Icon(androidx.compose.material.icons.Icons.AutoMirrored.Filled.ArrowBack, stringResource(R.string.accessibility_navigate_back), tint = AppText)
             }
             Text(stringResource(R.string.friends_title), fontWeight = FontWeight.Bold, color = AppText, fontSize = 22.sp, maxLines = 1,
                 overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f))
+            MessagesButton(navController, AppText)
             Icon(Icons.Filled.Refresh, stringResource(R.string.friends_refresh), tint = AppText,
                 modifier = Modifier.size(40.dp).clip(CircleShape).clickable { state = null; attempt++ }.padding(8.dp))
         }
