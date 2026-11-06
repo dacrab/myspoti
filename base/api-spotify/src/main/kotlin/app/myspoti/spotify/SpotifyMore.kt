@@ -332,9 +332,6 @@ class SpotifyUsers(private val gql: Gql, private val bridge: Bridge, private val
     /** Another page load may be another account: the next [ownUsername] asks again. */
     internal fun forgetUsername() { username = null }
 
-    /** Another page load may be another account: the next [ownUsername] asks again. */
-    internal fun forgetUsername() { username = null }
-
     override suspend fun blockUser(userUri: Uri) = writeBlock("POST", userUri)
     override suspend fun unblockUser(userUri: Uri) = writeBlock("DELETE", userUri)
 
